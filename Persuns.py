@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#/usr/bin/python
 
 from bs4 import BeautifulSoup
 import mechanize, base64
@@ -14,30 +14,33 @@ keys = [
 
 class Start():
 
-    inp = input("dni~>> ")
+    def __index__(self):
+        settings = (lambda e: base64.b64decode(keys[e].encode('ascii')).decode('ascii'))
 
-    settings = (lambda e: base64.b64decode(keys[e].encode('ascii')).decode('ascii'))
-	
-    br = mechanize.Browser()
-    br.set_handle_equiv(True)
-    br.set_handle_gzip(True)
-    br.set_handle_redirect(True)
-    br.addheaders = [('User-agent', 'Firefox')]
-    br.set_handle_referer(True)
-    br.set_handle_robots(False)
+        self.br = mechanize.Browser()
+        self.br.set_handle_equiv(True)
+        self.br.set_handle_gzip(True)
+        self.br.set_handle_redirect(True)
+        self.br.addheaders = [('User-agent', 'Firefox')]
+        selfbr.set_handle_referer(True)
+        self.br.set_handle_robots(False)
 
-    #cj = cookielib.LWPCookieJar()
-    #br.set_cookiejar(cj)
+        #cj = cookielib.LWPCookieJar()
+        #br.set_cookiejar(cj)
 
-    br.open(settings(0))
-    br.select_form(nr=2)
-    br.form['txt_dni'] = inp
-    br.submit()
+    def get(self):
+        self.br.open(settings(0))
+        self.br.select_form(nr=2)
+        self.br.form['txt_dni'] = inp
+        self.br.submit()
 
-    data = BeautifulSoup(br.response().read(), 'html5lib')
+        self.data = BeautifulSoup(br.response().read(), 'html5lib')
+        self.res = str(data.find('p', attrs={'id': 'resultados'}).text).split(':')
 
-    res = str(data.find('p', attrs={'id': 'resultados'}).text).split(':')
+        print(res[2][2:], Datas.geturl()[1])
+        print(res)
 
-    print(res[2][2:], Datas.geturl()[1])
-    print(res)
 
+http = Start()
+
+http.get()
