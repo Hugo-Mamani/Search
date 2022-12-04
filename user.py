@@ -2,7 +2,7 @@ import requests, json
 
 name = input("your name > ")
 
-host = "http://192.168.0.188:3000"
+host = "http://192.168.0.188:5000"
 
 memory = ""
     
