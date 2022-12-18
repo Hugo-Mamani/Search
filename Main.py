@@ -1,11 +1,24 @@
 from bs4 import BeautifulSoup
-import requests, base64
+import requests, base64, argparse
 
-key = input("inserte dni ~ >> ")
+parser = argparse.ArgumentParser(description="this program is a search persons with dni")
+parser.add_argument('--dni', help='is required for search')
+arg = parser.parse_args()
 
-if len(key) != 8 and not key.isnumeric:
-    print("dni incorecta")
+#key = input("inserte dni ~ >> ")
+key = arg.dni
+
+if key is None:
+    parser.print_help()
+    exit(230)
+
+elif not len(key) == 8:
+    print("this value not is key dni")
     exit(404)
+
+elif not key.isnumeric():
+    print('ascii code not found or enter tradicional dni')
+    exit(230)
 
 settings = (lambda e: base64.b64decode(e.encode('ascii')).decode('ascii'))
 
@@ -28,7 +41,10 @@ def getnet(key):
     return f'{name} : {location} : {code}'
 
 if __name__ == '__main__':
-    output = getnet(key)
-    print(output)
+    try:
+        output = getnet(key)
+        print(output)
+    except requests.exceptions.ConnectionError:
+        print('check your access to internet or verifi your wifi')
 
 
