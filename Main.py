@@ -29,8 +29,8 @@ with open("nets.txt", 'r') as file:
 
 def getnet(key):
     res = requests.post(net, data={'txt_dni':key}).text
-    res2 = requests.get(net2.format(key)).text
-    res3 = requests.get(net3.format(key)).text
+    res2 = requests.get(net2, params={'txt_dni':key}).text
+    res3 = requests.get(net3, params={'txt_dni':key}).text
     bs = BeautifulSoup(res, 'html5lib')
     bs2 = BeautifulSoup(res2, 'html5lib')
     bs3 = BeautifulSoup(res3, 'html5lib')
