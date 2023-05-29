@@ -19,6 +19,8 @@
 
 ## Usage
 
-`console
+`
+```console
 $ python3 Main.py
+```
 `
