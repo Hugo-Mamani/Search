@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from bs4 import BeautifulSoup
-import requests, base64, argparse
+import requests, base64, yaml, argparse
 
 parser = argparse.ArgumentParser(description="this program is a search persons with dni")
 parser.add_argument('--dni', help='is required for search')
@@ -48,5 +48,4 @@ if __name__ == '__main__':
         print(output)
     except requests.exceptions.ConnectionError:
         print('check your access to internet or verifi your wifi')
-
 

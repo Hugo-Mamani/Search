@@ -1,0 +1,13 @@
+[user]
+name = "ruu"
+age = 21
+first = true
+  
+ruka.love = true
+
+[user.new]
+love = 1000
+
+[me.love]
+me.love = "ruka"
+
